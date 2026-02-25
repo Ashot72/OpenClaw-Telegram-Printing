@@ -38,7 +38,8 @@ async function run() {
   const { chatId, text } = parseArgs();
   const authorizedUsers = getAuthorizedUsers();
 
-  if (!chatId || !authorizedUsers.some((id) => String(id) === String(chatId))) {
+  if (!chatId) exit("❌ Missing chat ID.\n");
+  if (authorizedUsers.length > 0 && !authorizedUsers.some((id) => String(id) === String(chatId))) {
     exit("❌ You are not authorized to print.\n");
   }
   if (!text) {
